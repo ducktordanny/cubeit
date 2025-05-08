@@ -43,11 +43,13 @@ I've created a WCA application for the authentication, which can be checked here
       "thumb_url": "https://avatars.worldcubeassociation.org/kapxualu4z4x7ncjtobcv6ecdm5x",
       "is_default": false,
       "can_edit_thumbnail": true
-    }
+    },
+    "email": "..."
   }
 }
 ```
 
+(scope is needed to be set to "public email")
 What if I want to fetch other existing users?
 
 `https://www.worldcubeassociation.org/api/v0/persons/{wca_id}` can also fetch user data, and returns some additional metadata, too, eg.:
