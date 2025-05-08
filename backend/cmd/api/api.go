@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/ducktordanny/cubeit/backend/services/auth"
 	"github.com/ducktordanny/cubeit/backend/services/user"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -45,6 +46,9 @@ func (server *APIServer) Run() error {
 	userStore := user.NewStore(server.db)
 	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subrouter)
+
+	authHandler := auth.NewHandler(userStore)
+	authHandler.RegisterRoutes(subrouter)
 
 	return router.Run(fmt.Sprintf(":%s", server.port))
 }

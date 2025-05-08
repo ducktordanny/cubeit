@@ -8,6 +8,8 @@ Porbably needed Tables and their attributes:
   - wcaId
   - name
   - email
+  - gender
+  - countryISO
   - avatarUrl
   - role
   - createdAt
