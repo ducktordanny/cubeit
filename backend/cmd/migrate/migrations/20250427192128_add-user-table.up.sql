@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS "user" (
   "email" TEXT UNIQUE NOT NULL,
   "gender" TEXT NOT NULL,
   "countryISO" TEXT NOT NULL,
-  "avatarUrl" TEXT,
+  "avatarURL" TEXT,
   "role" TEXT DEFAULT 'user',
   "createdAt" TIMESTAMP NOT NULL DEFAULT NOW()
 );

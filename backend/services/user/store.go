@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/ducktordanny/cubeit/backend/configs"
 	"github.com/ducktordanny/cubeit/backend/types"
 )
 
@@ -18,9 +19,30 @@ func NewStore(db *sql.DB) *Store {
 	return &Store{db: db}
 }
 
-func (store *Store) RegisterOrUpdateUser(wcaUser types.WCAUser) error {
-	fmt.Printf("Everything is fine. User %s\n", wcaUser.Name)
-	return nil
+func (store *Store) RegisterOrUpdateUser(wcaUser types.WCAUser) (types.User, error) {
+	_, err := store.db.Exec(`
+		INSERT INTO "user" ("id", "wcaId", "name", "email", "gender", "countryISO", "avatarURL")
+		VALUES ($1, $2, $3, $4, $5, $6, $7)
+		ON CONFLICT ("id") DO UPDATE
+		SET "wcaId" = EXCLUDED."wcaId",
+		    "name" = EXCLUDED."name",
+		    "email" = EXCLUDED."email",
+		    "avatarURL" = EXCLUDED."avatarURL"`,
+		wcaUser.Id, wcaUser.WcaId, wcaUser.Name, wcaUser.Email,
+		wcaUser.Gender, wcaUser.CountryIso2, wcaUser.Avatar.Url,
+	)
+	if err != nil {
+		return types.User{}, err
+	}
+	var user types.User
+	err = store.db.QueryRow(`SELECT * FROM "user" WHERE "id" = $1`, wcaUser.Id).Scan(
+		&user.Id, &user.WcaId, &user.Name, &user.Email, &user.Gender,
+		&user.CountryISO, &user.AvatarURL, &user.Role, &user.CreatedAt,
+	)
+	if err != nil {
+		return types.User{}, err
+	}
+	return user, nil
 }
 
 func (store *Store) GetWCAUser(accessToken string) (types.WCAUser, error) {
@@ -52,6 +74,9 @@ func (store *Store) GetWCAUser(accessToken string) (types.WCAUser, error) {
 	var wcaMe types.WCAMe
 	if err := json.NewDecoder(res.Body).Decode(&wcaMe); err != nil {
 		return types.WCAUser{}, fmt.Errorf("failed to decode user response: %w", err)
+	}
+	if configs.Envs.Production != true {
+		fmt.Printf("AccessToken of %s: %s\n", wcaMe.Me.Name, accessToken)
 	}
 	return wcaMe.Me, nil
 }

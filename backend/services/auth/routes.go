@@ -80,13 +80,14 @@ func (handler *Handler) handleOAuthCallback(context *gin.Context) {
 		return
 	}
 
-	err = handler.store.RegisterOrUpdateUser(wcaUser)
+	user, err := handler.store.RegisterOrUpdateUser(wcaUser)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Failed to register/update user: " + err.Error(),
 		})
 		return
 	}
+	context.IndentedJSON(http.StatusOK, user)
 }
 
 func generateState(length int) (string, error) {
