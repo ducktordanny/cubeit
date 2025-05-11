@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS "solve" (
   "categoryId" INT NOT NULL REFERENCES "puzzleCategory"(id),
   "penaltyId" INT REFERENCES penalty(id),
   "result" INT NOT NULL,
+  "isPr" BOOLEAN NOT NULL DEFAULT FALSE,
   "scramble" TEXT NOT NULL,
   "solution" TEXT,
   "note" TEXT,
