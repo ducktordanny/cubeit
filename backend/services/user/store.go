@@ -36,7 +36,7 @@ func (store *Store) RegisterOrUpdateUser(wcaUser types.WCAUser) (types.User, err
 	}
 	var user types.User
 	err = store.db.QueryRow(`SELECT * FROM "user" WHERE "id" = $1`, wcaUser.Id).Scan(
-		&user.Id, &user.WcaId, &user.Name, &user.Email, &user.Gender,
+		&user.Id, &user.WcaId, &user.Name, &user.Email, &user.Gender, &user.Bio,
 		&user.CountryISO, &user.AvatarURL, &user.Role, &user.CreatedAt,
 	)
 	if err != nil {
