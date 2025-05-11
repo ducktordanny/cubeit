@@ -10,7 +10,7 @@ Porbably needed Tables and their attributes:
   - email
   - gender
   - countryISO
-  - avatarUrl
+  - avatarURL
   - role
   - createdAt
 
@@ -32,6 +32,7 @@ Porbably needed Tables and their attributes:
   - categoryId
   - penaltyId
   - result (not calling this time, allows more flexibility for e.g. fmc)
+  - isPr
   - scramble
   - solution
   - note
@@ -42,6 +43,7 @@ Porbably needed Tables and their attributes:
   - id
   - userId
   - result
+  - isPr
   - note
   - createdAt
 
