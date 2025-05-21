@@ -8,7 +8,10 @@ Porbably needed Tables and their attributes:
   - wcaId
   - name
   - email
-  - avatarUrl
+  - gender
+  - bio
+  - countryISO
+  - avatarURL
   - role
   - createdAt
 
@@ -30,6 +33,7 @@ Porbably needed Tables and their attributes:
   - categoryId
   - penaltyId
   - result (not calling this time, allows more flexibility for e.g. fmc)
+  - isPR
   - scramble
   - solution
   - note
@@ -40,6 +44,7 @@ Porbably needed Tables and their attributes:
   - id
   - userId
   - result
+  - isPR
   - note
   - createdAt
 
