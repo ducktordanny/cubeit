@@ -21,6 +21,7 @@ export const USER_ROUTES: Route[] = [
         path: 'me',
         canActivate: [isLoggedInGuard],
         component: MePageComponent,
+        data: { requiresAuth: true },
       },
       {
         path: ':id',

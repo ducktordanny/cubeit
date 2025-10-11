@@ -16,7 +16,7 @@ func UserAuthSessionMiddleware() gin.HandlerFunc {
 		tokenString, err := context.Cookie("cubeshares.session")
 		if err != nil {
 			context.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
-				"error": "Missing token",
+				"error": "Authentication required",
 			})
 			return
 		}
