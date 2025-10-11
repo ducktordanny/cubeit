@@ -1,9 +1,10 @@
-import { Component, effect, input, output, untracked } from "@angular/core";
+import { Component, effect, ElementRef, input, output, untracked, viewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from "primeng/button";
 import { TextareaModule } from 'primeng/textarea';
+import { AutoFocusModule } from 'primeng/autofocus';
 import { take, tap } from "rxjs";
 
 import { UpdateUserBioRequestBody, UserMeService } from "@cubeshares/services/user";
@@ -16,12 +17,14 @@ type UpdateUserBioForm = {
   selector: 'cubeshares-user-bio-edit-dialog',
   templateUrl: 'user-bio-edit-dialog.component.html',
   styleUrl: 'user-bio-edit-dialog.component.scss',
-  imports: [DialogModule, ReactiveFormsModule, ButtonModule, TextareaModule],
+  imports: [AutoFocusModule, ButtonModule, DialogModule, ReactiveFormsModule, TextareaModule],
 })
 export class UserBioEditDialogComponent {
   readonly currentValue = input.required<string>();
   readonly visible = input<boolean>(false);
   readonly visibleChange = output<boolean>();
+
+  readonly bioTextArea = viewChild<ElementRef<HTMLTextAreaElement>>('bioTextArea');
 
   protected form: FormGroup<UpdateUserBioForm> | undefined;
 
@@ -50,5 +53,9 @@ export class UserBioEditDialogComponent {
         this.visibleChange.emit(false);
       })
     ).subscribe();
+  }
+
+  protected onShowFocus(): void {
+    this.bioTextArea()?.nativeElement.focus();
   }
 }

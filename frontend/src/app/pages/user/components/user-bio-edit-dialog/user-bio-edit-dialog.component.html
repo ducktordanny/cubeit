@@ -1,7 +1,7 @@
-<p-dialog header="Edit Bio" [modal]="true" [visible]="visible()" (visibleChange)="visibleChange.emit($event)">
+<p-dialog header="Edit Bio" [modal]="true" [visible]="visible()" [focusOnShow]="false" (visibleChange)="visibleChange.emit($event)" (onShow)="onShowFocus()">
   @if (form) {
     <form [formGroup]="form" (submit)="onSubmit()">
-      <textarea rows="5" cols="30" style="resize: none" pTextarea formControlName="bio"></textarea>
+      <textarea #bioTextArea rows="5" cols="30" style="resize: none" pTextarea formControlName="bio"></textarea>
       <div class="action-row">
         <button pButton severity="secondary" type="button" (click)="visibleChange.emit(false)">
           <span pButtonLabel>Cancel</span>
