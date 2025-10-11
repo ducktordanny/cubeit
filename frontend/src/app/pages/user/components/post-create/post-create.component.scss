@@ -5,10 +5,11 @@
       resize: vertical;
     }
 
-    &-footer {
+    &-actions {
       display: flex;
       justify-content: flex-end;
       gap: 0.8rem;
+      padding-top: 0.8rem;
 
       button {
         max-width: 12.8rem;

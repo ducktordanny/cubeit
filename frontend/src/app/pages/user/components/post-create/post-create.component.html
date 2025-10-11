@@ -3,20 +3,18 @@
     <h3>Post something...</h3>
   </ng-template>
   <section>
-    <form>
-      <textarea rows="5" pTextarea></textarea>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <textarea rows="5" pTextarea formControlName="description"></textarea>
+      <div class="create-post-actions">
+        <button pButton severity="secondary" type="button" [outlined]="true" (click)="onClear()">
+          <i class="pi pi-trash" pButtonIcon></i>
+          <span pButtonLabel>Clear</span>
+        </button>
+        <button pButton>
+          <i class="pi pi-check" pButtonIcon type="submit"></i>
+          <span pButtonLabel>Create Post</span>
+        </button>
+      </div>
     </form>
   </section>
-  <ng-template #footer>
-    <div class="create-post-footer">
-      <button pButton severity="secondary" [outlined]="true">
-        <i class="pi pi-trash" pButtonIcon></i>
-        <span pButtonLabel>Clear</span>
-      </button>
-      <button pButton>
-        <i class="pi pi-check" pButtonIcon></i>
-        <span pButtonLabel>Create Post</span>
-      </button>
-    </div>
-  </ng-template>
 </p-card>
