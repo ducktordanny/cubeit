@@ -1,24 +1,21 @@
-import { Component, effect, untracked } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 
 import { UserMeService } from '@cubeshares/services/user';
 
 import { UserDetailsCardComponent } from '../components/user-details-card/user-details-card.component';
+import { PostCreateComponent } from "../components/post-create/post-create.component";
+import { UserPostListComponent } from "../components/user-post-list/user-post-list.component";
 
 @Component({
   selector: 'cubeshares-me-page',
   templateUrl: 'me.page.html',
-  imports: [ButtonModule, UserDetailsCardComponent],
+  styleUrl: '../user.page.scss',
+  imports: [ButtonModule, UserDetailsCardComponent, PostCreateComponent, UserPostListComponent],
 })
 export class MePageComponent {
   protected readonly user = this.userMeService.loggedInUser;
 
-  constructor(private readonly userMeService: UserMeService, private readonly router: Router) {
-    effect(() => {
-      const user = this.user();
-      untracked(() => !user && void this.router.navigate(['/login']))
-    })
-  }
+  constructor(private readonly userMeService: UserMeService) { }
 }

@@ -7,12 +7,13 @@ import { UsersService } from '@cubeshares/services/user/users.service';
 import { UserMeService } from '@cubeshares/services/user';
 
 import { UserDetailsCardComponent } from '../components/user-details-card/user-details-card.component';
+import { UserPostListComponent } from "../components/user-post-list/user-post-list.component";
 
 @Component({
   selector: 'cubeshares-user-details-page',
   templateUrl: 'user-details.page.html',
-  styleUrl: 'user-details.page.scss',
-  imports: [UserDetailsCardComponent],
+  styleUrl: '../user.page.scss',
+  imports: [UserDetailsCardComponent, UserPostListComponent],
   providers: [UsersService]
 })
 export class UserDetailsPageComponent {

@@ -1,0 +1,19 @@
+:host {
+  .create-post {
+    textarea {
+      width: 100%;
+      resize: vertical;
+    }
+
+    &-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.8rem;
+
+      button {
+        max-width: 12.8rem;
+        width: 100%;
+      }
+    }
+  }
+}

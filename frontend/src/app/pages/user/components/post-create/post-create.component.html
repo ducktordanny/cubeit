@@ -1,0 +1,22 @@
+<p-card class="create-post">
+  <ng-template #title>
+    <h3>Post something...</h3>
+  </ng-template>
+  <section>
+    <form>
+      <textarea rows="5" pTextarea></textarea>
+    </form>
+  </section>
+  <ng-template #footer>
+    <div class="create-post-footer">
+      <button pButton severity="secondary" [outlined]="true">
+        <i class="pi pi-trash" pButtonIcon></i>
+        <span pButtonLabel>Clear</span>
+      </button>
+      <button pButton>
+        <i class="pi pi-check" pButtonIcon></i>
+        <span pButtonLabel>Create Post</span>
+      </button>
+    </div>
+  </ng-template>
+</p-card>

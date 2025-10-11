@@ -1,3 +1,9 @@
 @if (user(); as user) {
-  <cubeshares-user-details-card class="details-card" [user]="user" [isEditable]="true" />
+  <div class="user-page-layout">
+    <cubeshares-user-details-card class="details" [user]="user" [isEditable]="true" />
+    <div class="post-area">
+      <cubeshares-post-create class="create-post" />
+      <cubeshares-user-post-list class="post-list" />
+    </div>
+  </div>
 }

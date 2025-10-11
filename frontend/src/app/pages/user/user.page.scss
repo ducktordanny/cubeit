@@ -1,0 +1,29 @@
+:host {
+  .user-page-layout {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+
+    .details {
+      width: 32rem;
+    }
+
+    .post-area {
+      flex: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-width: 32rem;
+      max-width: 80rem;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .user-page-layout {
+      .post-area {
+        min-width: unset;
+      }
+    }
+  }
+}
